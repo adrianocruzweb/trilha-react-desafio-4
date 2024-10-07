@@ -20,6 +20,7 @@ const schema = yup
 const Login = () => {
   const {
     control,
+    register,
     formState: { errors, isValid },
   } = useForm<IFormLogin>({
     resolver: yupResolver(schema),
@@ -36,6 +37,7 @@ const Login = () => {
           <Spacing />
           <Input
             name="email"
+            type="email"
             placeholder="Email"
             control={control}
             errorMessage={errors?.email?.message}
@@ -49,7 +51,9 @@ const Login = () => {
             errorMessage={errors?.password?.message}
           />
           <Spacing />
-          <Button title="Entrar" />
+          <Button
+            title="Entrar"
+            disabled={!isValid} />
         </Column>
       </LoginContainer>
     </Container>
